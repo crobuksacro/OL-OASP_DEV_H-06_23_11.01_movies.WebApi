@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using OL_OASP_DEV_H_06_23_11._01_movies.Shared.Models.Binding;
 using OL_OASP_DEV_H_06_23_11._01_movies.Shared.Models.ViewModels;
 using OL_OASP_DEV_H_06_23_11._01_movies.WebApi.Context;
@@ -23,7 +24,7 @@ namespace OL_OASP_DEV_H_06_23_11._01_movies.WebApi.Services.Implmenetations
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        private MovieViewModel Add(MovieBinding model)
+        public MovieViewModel Add(MovieBinding model)
         {
             var dbo = mapper.Map<Movie>(model);
             dbContext.Movies.Add(dbo);
@@ -49,13 +50,13 @@ namespace OL_OASP_DEV_H_06_23_11._01_movies.WebApi.Services.Implmenetations
         /// Deletes a movie by its id
         /// </summary>
         /// <param name="id"></param>
-        public void Delete(int id)
+        public async Task Delete(int id)
         {
-            var dbo = dbContext.Movies.FirstOrDefault(m => m.Id == id);
+            var dbo = await dbContext.Movies.FirstOrDefaultAsync(m => m.Id == id);
             if (dbo != null)
             {
                 dbContext.Movies.Remove(dbo);
-                dbContext.SaveChanges();
+                await dbContext.SaveChangesAsync();
             }
         }
         /// <summary>
@@ -64,12 +65,12 @@ namespace OL_OASP_DEV_H_06_23_11._01_movies.WebApi.Services.Implmenetations
         /// <param name="page">The page number.</param>
         /// <param name="pageSize">The number of movies per page.</param>
         /// <returns>A list of MovieViewModel objects.</returns>
-        public List<MovieViewModel> FetchMoviesWithPagination(int page, int pageSize)
+        public async Task<List<MovieViewModel>> GetMoviesWithPagination(int page, int pageSize)
         {
-            var movies = dbContext.Movies
+            var movies = await dbContext.Movies
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize)
-                .ToList();
+                .ToListAsync();
 
             return mapper.Map<List<MovieViewModel>>(movies);
         }
