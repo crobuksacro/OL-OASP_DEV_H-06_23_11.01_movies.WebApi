@@ -4,4 +4,3 @@
 4. Odraditi migracije
 5. Servis MoviesService treba da ima metode za CRUD operacije
 6. Model Movie (Id, Title, Genre, ReleaseYear)
- 
