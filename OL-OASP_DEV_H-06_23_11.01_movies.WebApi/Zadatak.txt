@@ -1,0 +1,7 @@
+﻿1. Napraviti class lib koji sadrži modele od OL-OASP_DEV_H-06_23_11.01_movies.WebApi
+2. Razratiti struktutu projekta po vlastitom nahođenju
+3. Dodati conn string u projekt
+4. Odraditi migracije
+5. Servis MoviesService treba da ima metode za CRUD operacije
+6. Model Movie (Id, Title, Genre, ReleaseYear)
+ 

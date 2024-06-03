@@ -1,0 +1,6 @@
+@OL_OASP_DEV_H_06_23_11._01_movies.WebApi_HostAddress = http://localhost:5256
+
+GET {{OL_OASP_DEV_H_06_23_11._01_movies.WebApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
