@@ -10,7 +10,7 @@ namespace OL_OASP_DEV_H_06_23_11._01_movies.WebApp
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-            builder.Services.AddWebApiServiceClient("https://localhost:7256");
+            builder.Services.AddWebApiMovieServiceClient("https://localhost:7256");
 
 
             var app = builder.Build();
