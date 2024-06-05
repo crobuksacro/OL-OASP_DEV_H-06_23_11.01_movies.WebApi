@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\OL-OASP_DEV_H-06_23_11.01_movies.Shared\OL-OASP_DEV_H-06_23_11.01_movies.Shared.csproj" />
   </ItemGroup>
 

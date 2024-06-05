@@ -82,5 +82,17 @@ namespace OL_OASP_DEV_H_06_23_11._01_movies.WebApi.Controllers
             var movie = await _moviesService.GetMoviesWithPagination(page, pageSize);
             return Ok(movie);
         }
+
+        /// <summary>
+        /// Get all movies
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("movies")]
+        [ProducesResponseType(typeof(List<MovieViewModel>), StatusCodes.Status200OK)]
+        public async Task<ActionResult<List<MovieViewModel>>> GetMovies()
+        {
+            var movie = await _moviesService.GetMovies();
+            return Ok(movie);
+        }
     }
 }
