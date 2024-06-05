@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.34916.146
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OL-OASP_DEV_H-06_23_11.01_movies.WebApi", "OL-OASP_DEV_H-06_23_11.01_movies.WebApi\OL-OASP_DEV_H-06_23_11.01_movies.WebApi.csproj", "{C7EC254D-7A8B-41B7-A23B-860BF9084BB3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OL-OASP_DEV_H-06_23_11.01_movies.WebApi", "OL-OASP_DEV_H-06_23_11.01_movies.WebApi\OL-OASP_DEV_H-06_23_11.01_movies.WebApi.csproj", "{C7EC254D-7A8B-41B7-A23B-860BF9084BB3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OL-OASP_DEV_H-06_23_11.01_movies.Shared", "OL-OASP_DEV_H-06_23_11.01_movies.Shared\OL-OASP_DEV_H-06_23_11.01_movies.Shared.csproj", "{A30C8D2F-7829-4EE5-AC9C-CCD5B6B4D1B8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OL-OASP_DEV_H-06_23_11.01_movies.Shared", "OL-OASP_DEV_H-06_23_11.01_movies.Shared\OL-OASP_DEV_H-06_23_11.01_movies.Shared.csproj", "{A30C8D2F-7829-4EE5-AC9C-CCD5B6B4D1B8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OL-OASP_DEV_H-06_23_11.01_movies.WebApp", "OL-OASP_DEV_H-06_23_11.01_movies.WebApp\OL-OASP_DEV_H-06_23_11.01_movies.WebApp.csproj", "{8BF38335-70CA-44A4-8F53-F90AAE23803E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{A30C8D2F-7829-4EE5-AC9C-CCD5B6B4D1B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A30C8D2F-7829-4EE5-AC9C-CCD5B6B4D1B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A30C8D2F-7829-4EE5-AC9C-CCD5B6B4D1B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8BF38335-70CA-44A4-8F53-F90AAE23803E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BF38335-70CA-44A4-8F53-F90AAE23803E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8BF38335-70CA-44A4-8F53-F90AAE23803E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8BF38335-70CA-44A4-8F53-F90AAE23803E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
