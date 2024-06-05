@@ -2,8 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using OL_OASP_DEV_H_06_23_11._01_movies.WebApi.Context;
 using OL_OASP_DEV_H_06_23_11._01_movies.WebApi.Mapping;
-using OL_OASP_DEV_H_06_23_11._01_movies.WebApi.Services.Implmenetations;
-using OL_OASP_DEV_H_06_23_11._01_movies.WebApi.Services.InterFaces;
+using OL_OASP_DEV_H_06_23_11._01_movies.WebApi.Services.Implementations;
+using OL_OASP_DEV_H_06_23_11._01_movies.WebApi.Services.Interfaces;
 
 namespace OL_OASP_DEV_H_06_23_11._01_movies.WebApi
 {
