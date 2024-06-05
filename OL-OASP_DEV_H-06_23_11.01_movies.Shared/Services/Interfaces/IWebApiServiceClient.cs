@@ -21,5 +21,13 @@ namespace OL_OASP_DEV_H_06_23_11._01_movies.Shared.Services.Interfaces
         MovieViewModel Update(MovieUpdateBinding model, Action<HttpResponseMessage> unsuccessfulResponseAction = null);
         MovieViewModel GetMovie(long id, Action<HttpResponseMessage> unsuccessfulResponseAction = null);
         List<MovieViewModel> GetMovies(Action<HttpResponseMessage> unsuccessfulResponseAction = null);
+        /// <summary>
+        /// Gets a movie by its id
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="id"></param>
+        /// <param name="unsuccessfulResponseAction"></param>
+        /// <returns></returns>
+        T GetMovie<T>(long id, Action<HttpResponseMessage> unsuccessfulResponseAction = null);
     }
 }

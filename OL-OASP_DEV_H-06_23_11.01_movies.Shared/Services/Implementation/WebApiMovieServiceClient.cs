@@ -21,6 +21,18 @@ namespace OL_OASP_DEV_H_06_23_11._01_movies.Shared.Services.Implementation
         }
 
         /// <summary>
+        /// Gets a movie by its id
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="id"></param>
+        /// <param name="unsuccessfulResponseAction"></param>
+        /// <returns></returns>
+        public T GetMovie<T>(long id, Action<HttpResponseMessage> unsuccessfulResponseAction = null)
+        {
+            return DoRequestAndTryGetResponseContent<T>($"api/movie/{id}", HttpMethod.Get, true, unsuccessfulResponseAction);
+        }
+
+        /// <summary>
         /// Adds a movie to the database
         /// </summary>
         /// <param name="model"></param>

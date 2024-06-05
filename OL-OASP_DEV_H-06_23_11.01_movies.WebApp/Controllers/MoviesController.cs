@@ -31,5 +31,20 @@ namespace OL_OASP_DEV_H_06_23_11._01_movies.WebApp.Controllers
             var response = webApiServiceClient.AddMovie(model);
             return RedirectToAction("Index");
         }
+
+        public IActionResult Edit(int id)
+        {
+
+            var response = webApiServiceClient.GetMovie<MovieUpdateBinding>(id);
+            return View(response);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(MovieUpdateBinding model)
+        {
+
+            var response = webApiServiceClient.Update(model);
+            return RedirectToAction("Index");
+        }
     }
 }
