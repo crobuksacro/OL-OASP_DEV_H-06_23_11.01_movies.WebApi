@@ -1,0 +1,5 @@
+﻿Zadatak 1
+
+Napraviti Endpoint za dodavanje glumaca u film
+Napraviti endpoint za dohvat filomova po glumcu
+Napraviti ostale CRUD metode za glumca
