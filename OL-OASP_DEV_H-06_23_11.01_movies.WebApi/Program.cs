@@ -47,6 +47,22 @@ namespace OL_OASP_DEV_H_06_23_11._01_movies.WebApi
             app.UseAuthorization();
 
 
+            app.UseCors(builder =>
+            {
+                builder
+                   .WithOrigins("http://localhost:4200", "https://localhost:4200", "https://algebra.com")
+                   .SetIsOriginAllowedToAllowWildcardSubdomains()
+                   .AllowAnyHeader()
+                   .WithExposedHeaders("Content-Disposition")
+                   .AllowCredentials()
+                   .WithMethods("GET", "PUT", "POST", "DELETE", "OPTIONS")
+                   .SetPreflightMaxAge(TimeSpan.FromSeconds(3600));
+            }
+        );
+
+
+
+
             app.MapControllers();
 
             app.Run();
