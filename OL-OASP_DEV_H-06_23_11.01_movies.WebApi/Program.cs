@@ -1,4 +1,5 @@
 
+using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using OL_OASP_DEV_H_06_23_11._01_movies.WebApi.Context;
 using OL_OASP_DEV_H_06_23_11._01_movies.WebApi.Mapping;
@@ -28,6 +29,9 @@ namespace OL_OASP_DEV_H_06_23_11._01_movies.WebApi
             builder.Services.AddAutoMapper(typeof(MappingProfile));
             builder.Services.AddScoped<IMoviesService, MoviesService>();
 
+
+            ///FLUENT VALIDATION 
+            builder.Services.AddValidatorsFromAssemblyContaining<Program>(ServiceLifetime.Transient);
 
             var app = builder.Build();
 

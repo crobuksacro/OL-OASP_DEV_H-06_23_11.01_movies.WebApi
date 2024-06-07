@@ -5,6 +5,13 @@ namespace OL_OASP_DEV_H_06_23_11._01_movies.WebApi.Services.Interfaces
 {
     public interface IMoviesService
     {
+
+        /// <summary>
+        /// Validates if a movie exists in the database
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        Task<bool> MovieExists(int id);
         /// <summary>
         /// Deletes a movie by its id
         /// </summary>

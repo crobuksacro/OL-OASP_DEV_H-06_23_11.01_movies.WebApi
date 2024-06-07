@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FluentValidation;
+using Microsoft.AspNetCore.Mvc;
 using OL_OASP_DEV_H_06_23_11._01_movies.Shared.Models.Binding;
 using OL_OASP_DEV_H_06_23_11._01_movies.Shared.Models.ViewModels;
 using OL_OASP_DEV_H_06_23_11._01_movies.WebApi.Services.Interfaces;
@@ -10,10 +11,15 @@ namespace OL_OASP_DEV_H_06_23_11._01_movies.WebApi.Controllers
     public class MovieController : ControllerBase
     {
         private readonly IMoviesService _moviesService;
+        private readonly IValidator<MovieBinding> _movieBindingValidator;
+        private readonly IValidator<MovieUpdateBinding> _movieUpdateBindingValidator;
 
-        public MovieController(IMoviesService moviesService)
+        public MovieController(IMoviesService moviesService, 
+            IValidator<MovieBinding> movieBindingValidator, IValidator<MovieUpdateBinding> movieUpdateBindingValidator)
         {
             _moviesService = moviesService;
+            _movieBindingValidator = movieBindingValidator;
+            _movieUpdateBindingValidator = movieUpdateBindingValidator;
         }
 
 
@@ -24,11 +30,17 @@ namespace OL_OASP_DEV_H_06_23_11._01_movies.WebApi.Controllers
         /// <param name="model"></param>
         /// <returns></returns>
         [HttpPost]
-        [ProducesResponseType(typeof(MovieViewModel),StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(MovieViewModel), StatusCodes.Status200OK)]
         public async Task<ActionResult<MovieViewModel>> Add(MovieBinding model)
         {
-            var movie = _moviesService.Add(model);
-            return Ok(movie);
+    
+            var result = await _movieBindingValidator.ValidateAsync(model);
+            if (result.IsValid)
+            {
+                var movie = _moviesService.Add(model);
+                return Ok(movie);
+            }
+            return BadRequest(result.ToDictionary());
         }
         /// <summary>
         /// Updates a movie in the database
@@ -39,8 +51,14 @@ namespace OL_OASP_DEV_H_06_23_11._01_movies.WebApi.Controllers
         [ProducesResponseType(typeof(MovieViewModel), StatusCodes.Status200OK)]
         public async Task<ActionResult<MovieViewModel>> Update(MovieUpdateBinding model)
         {
-            var movie = _moviesService.Update(model);
-            return Ok(movie);
+            var result = await _movieUpdateBindingValidator.ValidateAsync(model);
+            if (result.IsValid)
+            {
+                var movie = _moviesService.Update(model);
+                return Ok(movie);
+            }
+
+            return BadRequest(result.ToDictionary());
         }
 
         /// <summary>
@@ -65,7 +83,7 @@ namespace OL_OASP_DEV_H_06_23_11._01_movies.WebApi.Controllers
         public async Task<ActionResult<MovieViewModel>> Delete(int id)
         {
             await _moviesService.Delete(id);
-            return Ok(new {Poruka = $"Film sa idom {id} je uspješno obrisan!" });
+            return Ok(new { Poruka = $"Film sa idom {id} je uspješno obrisan!" });
         }
 
 
