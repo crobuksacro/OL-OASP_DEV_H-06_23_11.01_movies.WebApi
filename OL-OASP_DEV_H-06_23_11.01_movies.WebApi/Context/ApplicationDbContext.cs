@@ -11,6 +11,8 @@ namespace OL_OASP_DEV_H_06_23_11._01_movies.WebApi.Context
         }
 
         public DbSet<Movie> Movies { get; set; }
+        public DbSet<Actor> Actors { get; set; }
+        
 
     }
 }

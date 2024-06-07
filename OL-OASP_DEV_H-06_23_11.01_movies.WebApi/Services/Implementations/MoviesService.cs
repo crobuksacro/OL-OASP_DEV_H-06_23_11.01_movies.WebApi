@@ -43,6 +43,37 @@ namespace OL_OASP_DEV_H_06_23_11._01_movies.WebApi.Services.Implementations
 
         }
         /// <summary>
+        /// Adds an actor to the database
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public ActorViewModel AddActor(ActorBinding model)
+        {
+            var dbo = mapper.Map<Actor>(model);
+            dbContext.Actors.Add(dbo);
+            dbContext.SaveChanges();
+            return mapper.Map<ActorViewModel>(dbo);
+
+        }
+        /// <summary>
+        ///  Get Movie By Actor Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public MovieViewModel GetMovieByActorId(int id)
+        {
+            var dbo = dbContext.Actors
+                .Include(y=>y.Movie)
+                .FirstOrDefault(m => m.Id == id);
+            if (dbo == null)
+            {
+                return null;
+            }
+            return mapper.Map<MovieViewModel>(dbo.Movie);
+        }
+
+
+        /// <summary>
         ///Gets a movie by its id
         /// </summary>
         /// <param name="id"></param>

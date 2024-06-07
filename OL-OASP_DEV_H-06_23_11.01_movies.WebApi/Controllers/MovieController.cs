@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using OL_OASP_DEV_H_06_23_11._01_movies.Shared.Models.Binding;
 using OL_OASP_DEV_H_06_23_11._01_movies.Shared.Models.ViewModels;
+using OL_OASP_DEV_H_06_23_11._01_movies.WebApi.FluentValidation;
 using OL_OASP_DEV_H_06_23_11._01_movies.WebApi.Services.Interfaces;
 
 namespace OL_OASP_DEV_H_06_23_11._01_movies.WebApi.Controllers
@@ -13,15 +14,38 @@ namespace OL_OASP_DEV_H_06_23_11._01_movies.WebApi.Controllers
         private readonly IMoviesService _moviesService;
         private readonly IValidator<MovieBinding> _movieBindingValidator;
         private readonly IValidator<MovieUpdateBinding> _movieUpdateBindingValidator;
+        private readonly IValidator<ActorBinding> _actorBindingValidation;
 
-        public MovieController(IMoviesService moviesService, 
-            IValidator<MovieBinding> movieBindingValidator, IValidator<MovieUpdateBinding> movieUpdateBindingValidator)
+
+        public MovieController(IMoviesService moviesService,
+            IValidator<MovieBinding> movieBindingValidator,
+            IValidator<MovieUpdateBinding> movieUpdateBindingValidator, IValidator<ActorBinding> actorBindingValidation)
         {
             _moviesService = moviesService;
             _movieBindingValidator = movieBindingValidator;
             _movieUpdateBindingValidator = movieUpdateBindingValidator;
+            _actorBindingValidation = actorBindingValidation;
         }
 
+
+        /// <summary>
+        /// Adds an actor to the database
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost("actor")]
+        [ProducesResponseType(typeof(ActorViewModel), StatusCodes.Status200OK)]
+        public async Task<ActionResult<ActorViewModel>> Add(ActorBinding model)
+        {
+
+            var result = await _actorBindingValidation.ValidateAsync(model);
+            if (result.IsValid)
+            {
+                var Actor = _moviesService.AddActor(model);
+                return Ok(Actor);
+            }
+            return BadRequest(result.ToDictionary());
+        }
 
 
         /// <summary>
@@ -33,7 +57,7 @@ namespace OL_OASP_DEV_H_06_23_11._01_movies.WebApi.Controllers
         [ProducesResponseType(typeof(MovieViewModel), StatusCodes.Status200OK)]
         public async Task<ActionResult<MovieViewModel>> Add(MovieBinding model)
         {
-    
+
             var result = await _movieBindingValidator.ValidateAsync(model);
             if (result.IsValid)
             {

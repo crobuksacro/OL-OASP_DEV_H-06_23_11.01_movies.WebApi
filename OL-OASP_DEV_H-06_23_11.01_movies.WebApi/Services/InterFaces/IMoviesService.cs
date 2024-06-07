@@ -5,7 +5,18 @@ namespace OL_OASP_DEV_H_06_23_11._01_movies.WebApi.Services.Interfaces
 {
     public interface IMoviesService
     {
-
+        /// <summary>
+        ///  Get Movie By Actor Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        MovieViewModel GetMovieByActorId(int id);
+        /// <summary>
+        /// Adds an actor to the database
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        ActorViewModel AddActor(ActorBinding model);
         /// <summary>
         /// Validates if a movie exists in the database
         /// </summary>
